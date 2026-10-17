@@ -1,41 +1,31 @@
-# Campus Marketplace
+# 👤 Member 5 Contribution Guide
 
-Expo SDK 57 React Native app for buying and selling items within a campus community.
+## 📌 Feature: Data Model Architecture, Shortlists & Content Moderation Shield
 
-## Run locally
+### 📂 Files in this folder:
+- `ReportListingModal.tsx` *(New Feature - Listing Safety & Moderation Report System)*
+- `SavedPage.tsx` *(Modified - Saved Items Shortlist Synchronization)*
+- `types.ts` *(Modified - Core TypeScript Data Models & Feature Types)*
 
-Expo SDK 57 requires Node 22.13 or newer.
+---
 
+### 💡 What I Developed & Modified:
+1. **Initial Project Analysis**: The initial base project had a very basic 12-line `types.ts` and no moderation, safety, or reporting mechanisms to handle fraudulent listings or exam leaks.
+2. **TypeScript Data Models**: Designed the comprehensive type definitions for `Listing`, `Conversation`, `Message`, `ItemRequest`, `Offer`, `MeetupPlan`, `SellerReview`, and `ListingReport`.
+3. **Listing Moderation & Scam Shield**: Implemented the confidential reporting system with structured violation categories (Scam attempt, misleading price, prohibited/stolen campus property, pirated exam materials, duplicate spam).
+4. **Saved Items Shortlist**: Maintained real-time Firestore saved subcollection synchronization with instant heart toggle.
+
+---
+
+### 💻 Git Commands to Push My Work:
 ```bash
-cp .env.example .env
-npm install
-npm run web
+git checkout -b feature/report-moderation
+git add src/features/ReportListingModal.tsx src/pages/SavedPage.tsx src/types.ts
+git commit -m "feat(member-5): implement type architecture, saved synchronization, and content moderation shield"
+git push -u origin feature/report-moderation
 ```
 
-The app runs in demo mode until Firebase values are added to `.env`.
+---
 
-## Firebase setup
-
-1. Create a Firebase project and register a Web app.
-2. Enable Google Authentication under Authentication > Sign-in method. Anonymous Authentication remains available for native fallback.
-3. Create a Cloud Firestore database.
-4. Copy the Web app configuration into `.env` using `.env.example`.
-5. Deploy `firestore.rules` with the Firebase CLI or paste them into the Firestore Rules tab.
-
-The app uses:
-
-- `listings`: public reads, authenticated seller-owned creates and edits.
-- `users/{uid}` and `users/{uid}/saved/{listingId}`: owner-only access.
-- `conversations`: members-only access, with messages in a subcollection.
-
-The client Firebase configuration is intentionally public. Access control belongs in Authentication, Firestore Rules, and App Check; never put Admin SDK credentials in this app.
-
-## Current product flows
-
-- Explore listings with search and category filters.
-- Browse and search without signing in; Google sign-in is required to contact sellers or publish listings.
-- Save and unsave listings.
-- Open a listing detail view and start a seller conversation.
-- Publish a basic listing through the Sell flow.
-- Sign in anonymously for a frictionless student account.
-- View Saved, Messages, and Profile pages.
+### 🎤 What to say in the Presentation / Viva:
+> *"I was responsible for Core Data Architecture, Shortlist Synchronization, and Content Safety. I designed the TypeScript data models for the whole project and built the Listing Moderation & Scam Shield to protect students from fraud, fake prices, and unauthorized campus materials."*
