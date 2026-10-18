@@ -11,4 +11,25 @@ export type Listing = {
   description?: string;
 };
 
+export type Conversation = {
+  id: string;
+  listingId: string;
+  listingTitle: string;
+  sellerId?: string;
+  sellerName: string;
+  memberIds?: string[];
+};
+
+export type Offer = {
+  id: string;
+  listingId: string;
+  listingTitle: string;
+  buyerName: string;
+  originalPrice: number;
+  offerPrice: number;
+  note?: string;
+  status: "pending" | "accepted" | "declined";
+  createdAt: string;
+};
+
 export type Tab = "Explore" | "Saved" | "Messages" | "Profile" | "MyListings";

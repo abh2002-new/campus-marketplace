@@ -20,6 +20,7 @@ import {
   query,
   serverTimestamp,
   setDoc,
+  where,
 } from "firebase/firestore";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -36,6 +37,7 @@ import {
   View,
 } from "react-native";
 import { EmptyState } from "./components/EmptyState";
+import { MakeOfferModal } from "./features/MakeOfferModal";
 import { ExplorePage } from "./pages/ExplorePage";
 import { MessagesPage } from "./pages/MessagesPage";
 import { MyListingsPage } from "./pages/MyListingsPage";
@@ -43,7 +45,7 @@ import { ProfilePage } from "./pages/ProfilePage";
 import { SavedPage } from "./pages/SavedPage";
 import { seedListings } from "./data";
 import { auth, db, firebaseConfigured } from "./firebase";
-import { Listing, Tab } from "./types";
+import { Conversation, Listing, Offer, Tab } from "./types";
 
 async function registerUser(user: User) {
   if (!db) return;
@@ -69,6 +71,9 @@ export default function App() {
   const [category, setCategory] = useState("All items");
   const [savedIds, setSavedIds] = useState<string[]>([]);
   const [selected, setSelected] = useState<Listing | null>(null);
+  const [offerListing, setOfferListing] = useState<Listing | null>(null);
+  const [conversations, setConversations] = useState<Conversation[]>([]);
+  const [offers, setOffers] = useState<Offer[]>([]);
   const [user, setUser] = useState<User | null>(auth?.currentUser || null);
   const [authOpen, setAuthOpen] = useState(false);
   const [sellOpen, setSellOpen] = useState(false);
@@ -110,6 +115,27 @@ export default function App() {
       );
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    if (!db || !user) {
+      setConversations([]);
+      return;
+    }
+    const conversationsQuery = query(
+      collection(db, "conversations"),
+      where("memberIds", "array-contains", user.uid),
+    );
+    return onSnapshot(
+      conversationsQuery,
+      (snapshot) =>
+        setConversations(
+          snapshot.docs.map(
+            (entry) => ({ id: entry.id, ...entry.data() }) as Conversation,
+          ),
+        ),
+      () => setConversations([]),
+    );
+  }, [user]);
 
   useEffect(() => {
     if (!db) return;
@@ -203,10 +229,30 @@ export default function App() {
     });
     setSellOpen(false);
   };
-  const contactSeller = () => {
+  const contactSeller = async (listing: Listing) => {
     if (!user) {
       setAuthOpen(true);
       return;
+    }
+    const conversation: Conversation = {
+      id: `${user.uid}-${listing.id}`,
+      listingId: listing.id,
+      listingTitle: listing.title,
+      sellerId: listing.sellerId,
+      sellerName: listing.seller,
+      memberIds: [user.uid, listing.sellerId || listing.id],
+    };
+    setConversations((current) =>
+      current.some((entry) => entry.id === conversation.id)
+        ? current
+        : [...current, conversation],
+    );
+    if (db) {
+      await setDoc(
+        doc(db, "conversations", conversation.id),
+        { ...conversation, updatedAt: serverTimestamp() },
+        { merge: true },
+      );
     }
     setSelected(null);
     setTab("Messages");
@@ -236,7 +282,11 @@ export default function App() {
         />
       )}
       {tab === "Messages" && (
-        <MessagesPage onBrowse={() => setTab("Explore")} />
+        <MessagesPage
+          conversations={conversations}
+          onBrowse={() => setTab("Explore")}
+          onOpen={() => undefined}
+        />
       )}
       {tab === "MyListings" && (
         <MyListingsPage
@@ -269,7 +319,22 @@ export default function App() {
         item={selected}
         user={user}
         onClose={() => setSelected(null)}
-        onContact={contactSeller}
+        onContact={() => selected && contactSeller(selected)}
+        onMakeOffer={() => {
+          if (user) {
+            setOfferListing(selected);
+            setSelected(null);
+          } else {
+            setAuthOpen(true);
+          }
+        }}
+      />
+      <MakeOfferModal
+        visible={offerListing !== null}
+        listing={offerListing}
+        currentUserName={user?.displayName || user?.email || undefined}
+        onClose={() => setOfferListing(null)}
+        onSubmitOffer={(offer) => setOffers((current) => [...current, offer])}
       />
       <AuthModal
         visible={authOpen}
@@ -357,11 +422,13 @@ function ListingModal({
   user,
   onClose,
   onContact,
+  onMakeOffer,
 }: {
   item: Listing | null;
   user: User | null;
   onClose: () => void;
   onContact: () => void;
+  onMakeOffer: () => void;
 }) {
   return (
     <Modal
@@ -394,6 +461,11 @@ function ListingModal({
                     : "Sign in to contact seller"}
                 </Text>
               </Pressable>
+              {user ? (
+                <Pressable style={styles.outline} onPress={onMakeOffer}>
+                  <Text style={styles.outlineText}>Make an offer</Text>
+                </Pressable>
+              ) : null}
             </View>
           </View>
         </View>
