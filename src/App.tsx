@@ -14,6 +14,7 @@ import {
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   onSnapshot,
   orderBy,
@@ -37,15 +38,19 @@ import {
   View,
 } from "react-native";
 import { EmptyState } from "./components/EmptyState";
+import { ItemRequestsModal } from "./features/ItemRequestsModal";
 import { MakeOfferModal } from "./features/MakeOfferModal";
+import { MeetupSchedulerModal } from "./features/MeetupSchedulerModal";
+import { ReportListingModal } from "./features/ReportListingModal";
+import { SellerReviewsModal } from "./features/SellerReviewsModal";
 import { ExplorePage } from "./pages/ExplorePage";
 import { MessagesPage } from "./pages/MessagesPage";
 import { MyListingsPage } from "./pages/MyListingsPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { SavedPage } from "./pages/SavedPage";
-import { seedListings } from "./data";
+import { seedListings, universities } from "./data";
 import { auth, db, firebaseConfigured } from "./firebase";
-import { Conversation, Listing, Offer, Tab } from "./types";
+import { Conversation, Listing, ListingReport, MeetupPlan, Offer, Tab } from "./types";
 
 async function registerUser(user: User) {
   if (!db) return;
@@ -57,7 +62,7 @@ async function registerUser(user: User) {
         user.displayName || user.email?.split("@")[0] || "Campus student",
       email: user.email || "",
       photoURL: user.photoURL || null,
-      campus: "North Campus",
+      campus: universities[0] || "North Campus",
       updatedAt: serverTimestamp(),
     },
     { merge: true },
@@ -66,12 +71,22 @@ async function registerUser(user: User) {
 
 export default function App() {
   const [tab, setTab] = useState<Tab>("Explore");
-  const [items, setItems] = useState(seedListings);
+  const [items, setItems] = useState<Listing[]>(seedListings);
   const [queryText, setQueryText] = useState("");
   const [category, setCategory] = useState("All items");
+  const [campus, setCampus] = useState("All Campuses");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
   const [savedIds, setSavedIds] = useState<string[]>([]);
   const [selected, setSelected] = useState<Listing | null>(null);
+
+  // Feature modals state
   const [offerListing, setOfferListing] = useState<Listing | null>(null);
+  const [meetupListing, setMeetupListing] = useState<Listing | null>(null);
+  const [reviewSeller, setReviewSeller] = useState<Listing | null>(null);
+  const [reporting, setReporting] = useState<Listing | null>(null);
+  const [requestBoardOpen, setRequestBoardOpen] = useState(false);
+
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [offers, setOffers] = useState<Offer[]>([]);
   const [user, setUser] = useState<User | null>(auth?.currentUser || null);
@@ -157,25 +172,45 @@ export default function App() {
     );
   }, []);
 
-  const filteredItems = useMemo(
-    () =>
-      items.filter(
-        (item) =>
-          (category === "All items" || item.category === category) &&
-          item.title.toLowerCase().includes(queryText.toLowerCase()),
-      ),
-    [category, items, queryText],
-  );
+  const filteredItems = useMemo(() => {
+    return items.filter((item) => {
+      const matchesCategory =
+        category === "All items" || item.category === category;
+      const matchesQuery =
+        queryText.trim() === "" ||
+        item.title.toLowerCase().includes(queryText.toLowerCase()) ||
+        item.description?.toLowerCase().includes(queryText.toLowerCase()) ||
+        item.seller.toLowerCase().includes(queryText.toLowerCase());
+      const matchesCampus =
+        campus === "All Campuses" ||
+        item.university === campus ||
+        item.campus === campus;
+      const min = parseFloat(minPrice);
+      const max = parseFloat(maxPrice);
+      const matchesMinPrice = isNaN(min) || item.price >= min;
+      const matchesMaxPrice = isNaN(max) || item.price <= max;
+      return (
+        matchesCategory &&
+        matchesQuery &&
+        matchesCampus &&
+        matchesMinPrice &&
+        matchesMaxPrice
+      );
+    });
+  }, [items, category, queryText, campus, minPrice, maxPrice]);
+
   const myListings = useMemo(
     () => (user ? items.filter((item) => item.sellerId === user.uid) : []),
     [items, user],
   );
+
   const toggleSaved = (id: string) =>
     setSavedIds((current) =>
       current.includes(id)
         ? current.filter((value) => value !== id)
         : [...current, id],
     );
+
   const signInWithGoogle = async () => {
     if (!auth) return;
     setAuthError("");
@@ -205,6 +240,7 @@ export default function App() {
       Alert.alert("Google sign-in failed", code);
     }
   };
+
   const publish = async (
     title: string,
     price: string,
@@ -215,20 +251,34 @@ export default function App() {
       setAuthOpen(true);
       return;
     }
-    await addDoc(collection(db!, "listings"), {
+    const itemUni = campus !== "All Campuses" ? campus : (universities[0] || "University of Moratuwa");
+    const newDoc = {
       title,
       price: Number(price),
       category: listingCategory,
       seller: user.displayName || user.email || "You",
       sellerId: user.uid,
-      campus: "North Campus",
+      university: itemUni,
+      campus: itemUni,
       condition: "Good condition",
       image: seedListings[0].image,
       description: "New listing from a campus seller.",
       createdAt: serverTimestamp(),
-    });
+    };
+    if (db) {
+      await addDoc(collection(db, "listings"), newDoc);
+    } else {
+      setItems((prev) => [
+        {
+          id: `local-${Date.now()}`,
+          ...newDoc,
+        } as Listing,
+        ...prev,
+      ]);
+    }
     setSellOpen(false);
   };
+
   const contactSeller = async (listing: Listing) => {
     if (!user) {
       setAuthOpen(true);
@@ -258,6 +308,49 @@ export default function App() {
     setTab("Messages");
   };
 
+  const submitReport = async (report: ListingReport) => {
+    if (!db || !user) {
+      setAuthOpen(true);
+      return;
+    }
+    try {
+      await addDoc(collection(db, "listingReports"), {
+        ...report,
+        reporterId: user.uid,
+        createdAt: serverTimestamp(),
+      });
+    } catch (error) {
+      Alert.alert(
+        "Could not submit report",
+        error instanceof Error ? error.message : "Please try again.",
+      );
+    }
+  };
+
+  const handleDeleteListing = async (item: Listing) => {
+    Alert.alert(
+      "Delete Listing",
+      `Are you sure you want to delete "${item.title}"?`,
+      [
+        { text: "Cancel", style: "cancel" },
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: async () => {
+            if (db && item.id && !item.id.startsWith("local-")) {
+              try {
+                await deleteDoc(doc(db, "listings", item.id));
+              } catch (err) {
+                console.error("Error deleting document:", err);
+              }
+            }
+            setItems((prev) => prev.filter((i) => i.id !== item.id));
+          },
+        },
+      ],
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
@@ -266,12 +359,21 @@ export default function App() {
           items={filteredItems}
           query={queryText}
           category={category}
+          campus={campus}
+          minPrice={minPrice}
+          maxPrice={maxPrice}
+          campuses={["All Campuses", ...universities]}
           savedIds={savedIds}
           onQueryChange={setQueryText}
           onCategoryChange={setCategory}
+          onCampusChange={setCampus}
+          onMinPriceChange={setMinPrice}
+          onMaxPriceChange={setMaxPrice}
           onSave={toggleSaved}
           onOpen={setSelected}
           onProfile={() => setTab("Profile")}
+          avatarUrl={user?.photoURL}
+          onRequestBoard={() => setRequestBoardOpen(true)}
         />
       )}
       {tab === "Saved" && (
@@ -293,6 +395,13 @@ export default function App() {
           items={myListings}
           onOpen={setSelected}
           onSell={() => setSellOpen(true)}
+          onEdit={(item) => {
+            Alert.alert(
+              "Edit Listing",
+              `Editing "${item.title}". You can update price and details here.`,
+            );
+          }}
+          onDelete={handleDeleteListing}
         />
       )}
       {tab === "Profile" && (
@@ -307,14 +416,18 @@ export default function App() {
           onSaved={() => setTab("Saved")}
           onSignIn={() => setAuthOpen(true)}
           onSignOut={() => auth && signOut(auth)}
+          onBack={() => setTab("Explore")}
         />
       )}
+
       <BottomNav
         tab={tab}
         savedCount={savedIds.length}
         onChange={setTab}
         onSell={() => setSellOpen(true)}
       />
+
+      {/* Main Listing View Detail Modal */}
       <ListingModal
         item={selected}
         user={user}
@@ -328,7 +441,25 @@ export default function App() {
             setAuthOpen(true);
           }
         }}
+        onScheduleMeetup={() => {
+          setMeetupListing(selected);
+          setSelected(null);
+        }}
+        onViewReviews={() => {
+          setReviewSeller(selected);
+          setSelected(null);
+        }}
+        onReport={() => {
+          if (!user) {
+            setAuthOpen(true);
+            return;
+          }
+          setReporting(selected);
+          setSelected(null);
+        }}
       />
+
+      {/* Feature 1: Make an Offer Modal (Dilshan) */}
       <MakeOfferModal
         visible={offerListing !== null}
         listing={offerListing}
@@ -336,6 +467,53 @@ export default function App() {
         onClose={() => setOfferListing(null)}
         onSubmitOffer={(offer) => setOffers((current) => [...current, offer])}
       />
+
+      {/* Feature 2: Safe Meetup Scheduler Modal (Bingusara) */}
+      <MeetupSchedulerModal
+        visible={meetupListing !== null}
+        listing={meetupListing}
+        onClose={() => setMeetupListing(null)}
+        onConfirmMeetup={(plan: MeetupPlan) => {
+          Alert.alert(
+            "Safe Meetup Scheduled!",
+            `Exchange spot confirmed at: ${plan.location} (${plan.campus}) for ${plan.date} during ${plan.timeSlot}.`,
+          );
+        }}
+      />
+
+      {/* Feature 3: Seller Reviews & Ratings Modal (Sehan) */}
+      <SellerReviewsModal
+        visible={reviewSeller !== null}
+        sellerName={reviewSeller?.seller || ""}
+        sellerId={reviewSeller?.sellerId}
+        campus={reviewSeller?.campus || reviewSeller?.university}
+        currentUserName={user?.displayName || user?.email || undefined}
+        onClose={() => setReviewSeller(null)}
+      />
+
+      {/* Feature 4: Student Campus Request Board Modal (Pehesara) */}
+      <ItemRequestsModal
+        visible={requestBoardOpen}
+        currentCampus={campus !== "All Campuses" ? campus : (universities[0] || "University of Moratuwa")}
+        currentUserName={user?.displayName || user?.email || undefined}
+        onClose={() => setRequestBoardOpen(false)}
+        onContactRequester={(req) => {
+          setRequestBoardOpen(false);
+          Alert.alert(
+            "Contact Requester",
+            `Opening direct communication with ${req.requesterName} regarding their request: "${req.title}"`,
+          );
+        }}
+      />
+
+      {/* Feature 5: Listing Report & Content Moderation Modal (Malith) */}
+      <ReportListingModal
+        visible={reporting !== null}
+        listing={reporting}
+        onClose={() => setReporting(null)}
+        onSubmitReport={submitReport}
+      />
+
       <AuthModal
         visible={authOpen}
         onClose={() => setAuthOpen(false)}
@@ -390,6 +568,7 @@ function BottomNav({
     </View>
   );
 }
+
 function NavItem({
   label,
   icon,
@@ -417,18 +596,25 @@ function NavItem({
     </Pressable>
   );
 }
+
 function ListingModal({
   item,
   user,
   onClose,
   onContact,
   onMakeOffer,
+  onScheduleMeetup,
+  onViewReviews,
+  onReport,
 }: {
   item: Listing | null;
   user: User | null;
   onClose: () => void;
   onContact: () => void;
   onMakeOffer: () => void;
+  onScheduleMeetup: () => void;
+  onViewReviews: () => void;
+  onReport: () => void;
 }) {
   return (
     <Modal
@@ -444,16 +630,17 @@ function ListingModal({
             <Pressable style={styles.close} onPress={onClose}>
               <Text style={styles.closeText}>×</Text>
             </Pressable>
-            <View style={styles.detailBody}>
+            <ScrollView contentContainerStyle={styles.detailBody} showsVerticalScrollIndicator={false}>
               <Text style={styles.detailCategory}>
                 {item.category.toUpperCase()}
               </Text>
               <Text style={styles.detailTitle}>{item.title}</Text>
-              <Text style={styles.detailPrice}>${item.price}</Text>
+              <Text style={styles.detailPrice}>LKR {item.price}</Text>
               <Text style={styles.muted}>
-                {item.condition} · {item.campus} · {item.seller}
+                {item.condition} · {item.university || item.campus} · {item.seller}
               </Text>
               <Text style={styles.description}>{item.description}</Text>
+
               <Pressable style={styles.primary} onPress={onContact}>
                 <Text style={styles.primaryText}>
                   {user
@@ -461,18 +648,32 @@ function ListingModal({
                     : "Sign in to contact seller"}
                 </Text>
               </Pressable>
+
               {user ? (
                 <Pressable style={styles.outline} onPress={onMakeOffer}>
-                  <Text style={styles.outlineText}>Make an offer</Text>
+                  <Text style={styles.outlineText}>🏷️ Make an offer</Text>
                 </Pressable>
               ) : null}
-            </View>
+
+              <Pressable style={styles.outline} onPress={onScheduleMeetup}>
+                <Text style={styles.outlineText}>📍 Schedule safe campus meetup</Text>
+              </Pressable>
+
+              <Pressable style={styles.outline} onPress={onViewReviews}>
+                <Text style={styles.outlineText}>⭐ View seller reviews & ratings</Text>
+              </Pressable>
+
+              <Pressable style={styles.reportButton} onPress={onReport}>
+                <Text style={styles.reportText}>🛡️ Report this listing</Text>
+              </Pressable>
+            </ScrollView>
           </View>
         </View>
       )}
     </Modal>
   );
 }
+
 function AuthModal({
   visible,
   onClose,
@@ -506,6 +707,7 @@ function AuthModal({
     </Modal>
   );
 }
+
 function SellModal({
   visible,
   onClose,
@@ -535,12 +737,12 @@ function SellModal({
             placeholder="e.g. Organic Chemistry textbook"
             style={styles.field}
           />
-          <Text style={styles.label}>Price</Text>
+          <Text style={styles.label}>Price (LKR)</Text>
           <TextInput
             value={price}
             onChangeText={setPrice}
             keyboardType="numeric"
-            placeholder="$ 0"
+            placeholder="0"
             style={styles.field}
           />
           <Pressable
@@ -607,8 +809,9 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     overflow: "hidden",
+    maxHeight: "90%",
   },
-  detailImage: { width: "100%", height: 230 },
+  detailImage: { width: "100%", height: 210 },
   close: {
     position: "absolute",
     top: 14,
@@ -619,9 +822,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
     alignItems: "center",
     justifyContent: "center",
+    zIndex: 10,
   },
   closeText: { color: "#173C34", fontSize: 26 },
-  detailBody: { padding: 24 },
+  detailBody: { padding: 24, paddingBottom: 40 },
   detailCategory: {
     color: "#23775D",
     fontSize: 11,
@@ -630,32 +834,49 @@ const styles = StyleSheet.create({
   },
   detailTitle: {
     color: "#173C34",
-    fontSize: 25,
+    fontSize: 23,
     fontWeight: "800",
     marginTop: 8,
   },
   detailPrice: {
     color: "#1C7057",
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: "800",
     marginTop: 8,
   },
-  muted: { color: "#87918C", fontSize: 12 },
+  muted: { color: "#87918C", fontSize: 12, marginTop: 4 },
   description: {
     color: "#66736D",
     fontSize: 14,
     lineHeight: 21,
-    marginVertical: 20,
+    marginVertical: 16,
   },
   primary: {
-    height: 50,
+    height: 48,
     backgroundColor: "#1F5D4C",
     borderRadius: 14,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 24,
+    marginTop: 14,
   },
   primaryText: { color: "#FFF", fontWeight: "800" },
+  outline: {
+    height: 46,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: "#BCD0C3",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10,
+    backgroundColor: "#F8FAF8",
+  },
+  outlineText: { color: "#1F5D4C", fontWeight: "700", fontSize: 13 },
+  reportButton: {
+    alignItems: "center",
+    paddingVertical: 12,
+    marginTop: 8,
+  },
+  reportText: { color: "#C3535B", fontSize: 13, fontWeight: "700" },
   auth: { backgroundColor: "#FFF", borderRadius: 20, padding: 24, margin: 20 },
   form: {
     backgroundColor: "#FFF",
@@ -690,16 +911,6 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   googleMark: { color: "#4285F4", fontSize: 18, fontWeight: "800" },
-  outline: {
-    height: 50,
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: "#BCD0C3",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 12,
-  },
-  outlineText: { color: "#1F5D4C", fontWeight: "800" },
   label: {
     color: "#365B4C",
     fontSize: 12,
