@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { User } from "firebase/auth";
 import { PageTitle } from "../components/PageTitle";
+import { universities } from "../data";
 export function ProfilePage({
   user,
   savedCount,
@@ -19,6 +20,7 @@ export function ProfilePage({
   onSaved,
   onSignIn,
   onSignOut,
+  onBack,
 }: {
   user: User | null;
   savedCount: number;
@@ -30,6 +32,7 @@ export function ProfilePage({
   onSaved: () => void;
   onSignIn: () => void;
   onSignOut: () => void;
+  onBack: () => void;
 }) {
   const name =
     user?.displayName || user?.email?.split("@")[0] || "Campus guest";
@@ -41,6 +44,9 @@ export function ProfilePage({
     .toUpperCase();
   return (
     <ScrollView contentContainerStyle={styles.content}>
+      <Pressable style={styles.backButton} onPress={onBack}>
+        <Text style={styles.backButtonText}>← Back to Explore</Text>
+      </Pressable>
       <PageTitle title="Profile" subtitle="Your campus marketplace account" />
       <View style={styles.hero}>
         {user?.photoURL ? (
@@ -62,7 +68,7 @@ export function ProfilePage({
           onPress={onMyListings}
         />
         <Row label="Saved items" value={String(savedCount)} onPress={onSaved} />
-        <Row label="Meetup preferences" value="North Campus" />
+        <Row label="Meetup preferences" value={universities[0]} />
       </View>
       {error ? <Text style={styles.error}>{error}</Text> : null}
       {user && profileReady ? (
@@ -103,6 +109,8 @@ function Row({
 }
 const styles = StyleSheet.create({
   content: { padding: 20, paddingBottom: 110 },
+  backButton: { paddingTop: 8, paddingBottom: 4 },
+  backButtonText: { color: "#23775D", fontSize: 14, fontWeight: "700" },
   hero: { alignItems: "center", paddingBottom: 28 },
   avatar: {
     width: 76,
