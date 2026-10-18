@@ -6,11 +6,15 @@ export function ListingCard({
   saved,
   onSave,
   onOpen,
+  onEdit,
+  onDelete,
 }: {
   item: Listing;
   saved: boolean;
   onSave: () => void;
   onOpen: () => void;
+  onEdit?: () => void;
+  onDelete?: () => void;
 }) {
   return (
     <Pressable style={styles.card} onPress={onOpen}>
@@ -31,12 +35,26 @@ export function ListingCard({
           <Text style={styles.title} numberOfLines={2}>
             {item.title}
           </Text>
-          <Text style={styles.price}>${item.price}</Text>
+          <Text style={styles.price}>LKR {item.price}</Text>
         </View>
         <Text style={styles.muted}>
-          {item.condition} · {item.campus}
+          {item.condition} · {item.university || item.campus}
         </Text>
         <Text style={styles.tiny}>Listed by {item.seller}</Text>
+        {onEdit || onDelete ? (
+          <View style={styles.actions}>
+            {onEdit ? (
+              <Pressable style={styles.actionButton} onPress={onEdit}>
+                <Text style={styles.actionText}>Edit</Text>
+              </Pressable>
+            ) : null}
+            {onDelete ? (
+              <Pressable style={styles.actionButton} onPress={onDelete}>
+                <Text style={styles.deleteText}>Delete</Text>
+              </Pressable>
+            ) : null}
+          </View>
+        ) : null}
       </View>
     </Pressable>
   );
@@ -79,4 +97,14 @@ const styles = StyleSheet.create({
   price: { color: "#1C7057", fontSize: 14, fontWeight: "800" },
   muted: { color: "#87918C", fontSize: 12 },
   tiny: { color: "#A0AAA4", fontSize: 10, marginTop: 5 },
+  actions: { flexDirection: "row", gap: 8, marginTop: 10 },
+  actionButton: {
+    borderWidth: 1,
+    borderColor: "#BCD0C3",
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+  },
+  actionText: { color: "#1F5D4C", fontSize: 11, fontWeight: "800" },
+  deleteText: { color: "#B64950", fontSize: 11, fontWeight: "800" },
 });
