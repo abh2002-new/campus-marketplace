@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Marketplace - Solo Presentation Speech & Viva Guide</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+    
+    :root {
+      --primary: #1F5D4C;
+      --primary-dark: #143F33;
+      --primary-light: #EBF3EE;
+      --accent: #C3535B;
+      --text: #1E2924;
+      --muted: #64746D;
+      --border: #D8E0DA;
+      --bg: #F8FAF8;
+      --card-bg: #FFFFFF;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 48px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+    }
+
+    /* Print Button */
+    .print-bar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 24px;
+    }
+
+    .btn-print {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 8px rgba(31,93,76,0.25);
+      transition: background 0.2s;
+    }
+
+    .btn-print:hover { background: var(--primary-dark); }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 32px;
+      border-radius: 12px;
+      margin-bottom: 32px;
+    }
+
+    .header-badge {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #A3D9C9;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .header h1 {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #E0EFEA;
+      font-size: 14px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      font-size: 12px;
+    }
+
+    .meta-item strong { display: block; color: white; font-weight: 700; }
+    .meta-item span { color: #CFE5DD; }
+
+    /* Headings */
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin: 32px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--primary-light);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 20px 0 8px;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 13px;
+    }
+
+    th, td {
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    td code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      background: #F1F4F2;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--primary);
+    }
+
+    /* Action Cues */
+    .cue-box {
+      background: #EFF6F2;
+      border-left: 4px solid var(--primary);
+      padding: 10px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 14px 0 10px;
+      font-size: 12px;
+      color: var(--primary-dark);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Speech Quote */
+    .speech-box {
+      background: #FAFCFA;
+      border-left: 4px solid #A8C9B9;
+      padding: 16px 20px;
+      margin-bottom: 18px;
+      border-radius: 0 10px 10px 0;
+      font-size: 14px;
+      color: #24332C;
+      line-height: 1.7;
+    }
+
+    .speech-box p { margin-bottom: 10px; }
+    .speech-box p:last-child { margin-bottom: 0; }
+
+    ul.bullets {
+      margin: 8px 0 16px 20px;
+      font-size: 13.5px;
+    }
+
+    ul.bullets li { margin-bottom: 6px; }
+    ul.bullets strong { color: var(--primary-dark); }
+
+    /* Q&A Cards */
+    .qa-card {
+      background: #FFF;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+    }
+
+    .qa-q {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .qa-a {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .container { border: none; box-shadow: none; padding: 0; max-width: 100%; }
+      .print-bar { display: none; }
+      .header { padding: 20px; page-break-after: avoid; }
+      h2 { page-break-after: avoid; }
+      .speech-box { page-break-inside: avoid; }
+      .qa-card { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <div class="print-bar">
+      <button class="btn-print" onclick="window.print()">
+        🖨️ Print / Save as PDF
+      </button>
+    </div>
+
+    <div class="header">
+      <div class="header-badge">React Native Expo SDK 57 + Firebase Firestore & Storage</div>
+      <h1>Campus Marketplace — Solo Presentation Speech</h1>
+      <p>Delivered by a Single Presenter Representing the Complete 5-Member Team</p>
+      <div class="meta-grid">
+        <div class="meta-item">
+          <strong>Speaking Duration</strong>
+          <span>8 – 10 Minutes</span>
+        </div>
+        <div class="meta-item">
+          <strong>Team Allocation</strong>
+          <span>5 Members (20% Equal Credit)</span>
+        </div>
+        <div class="meta-item">
+          <strong>Evaluation Focus</strong>
+          <span>Architecture, CRUD & Security</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>👥 1. Team Allocation & Individual Contributions</h2>
+    <p style="font-size: 13px; color: var(--muted); margin-bottom: 10px;">
+      In this speech, the solo presenter clearly attributes each core module to its respective developer so that all 5 members receive full academic marks.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Member</th>
+          <th>Module Assigned</th>
+          <th>Dedicated Source Files</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Member 1</strong></td>
+          <td>Campus Search, Price Filter & Request Board (WTB)</td>
+          <td><code>ItemRequestsModal.tsx</code>, <code>ExplorePage.tsx</code>, <code>data.ts</code></td>
+        </tr>
+        <tr>
+          <td><strong>Member 2</strong></td>
+          <td>Live Chat Engine & Price Bargaining Flow</td>
+          <td><code>MakeOfferModal.tsx</code>, <code>MessagesPage.tsx</code></td>
+        </tr>
+        <tr>
+          <td><strong>Member 3</strong></td>
+          <td>Seller Inventory CRUD & Safe Meetup Coordinator</td>
+          <td><code>MeetupSchedulerModal.tsx</code>, <code>MyListingsPage.tsx</code>, <code>ListingCard.tsx</code></td>
+        </tr>
+        <tr>
+          <td><strong>Member 4</strong></td>
+          <td>Auth Security, Profile & Seller Reputation</td>
+          <td><code>SellerReviewsModal.tsx</code>, <code>ProfilePage.tsx</code></td>
+        </tr>
+        <tr>
+          <td><strong>Member 5</strong></td>
+          <td>Data Architecture & Content Moderation Shield</td>
+          <td><code>ReportListingModal.tsx</code>, <code>SavedPage.tsx</code>, <code>types.ts</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>🎬 2. Opening & Problem Statement (~1.5 Mins)</h2>
+    <div class="cue-box">
+      <span>📍 Stage Cue:</span> Welcome panel members, introduce project title and state names of all 5 members.
+    </div>
+
+    <div class="speech-box">
+      <p><em>"Good morning / afternoon respected lecturers and panel members. My name is <strong>[Your Name]</strong>, and today I am proud to present our software engineering project, <strong>Campus Marketplace</strong>, on behalf of our 5-member team: <strong>[Member 1], [Member 2], [Member 3], [Member 4]</strong>, and myself."</em></p>
+      <p><em>"Every semester, university students face heavy financial hurdles purchasing textbooks, notes, and lab gear. Existing platforms like Facebook Marketplace or Ikman lack university verification, fail to filter by campus, and carry safety risks during meetups."</em></p>
+      <p><em>"We engineered Campus Marketplace: a secure peer-to-peer trading mobile and web app built with React Native Expo SDK 57, Firebase Cloud Firestore, and Cloud Storage. We expanded an initial prototype into an enterprise student marketplace, divided equally into 5 dedicated modules. Allow me to demonstrate our system and each member's contributions."</em></p>
+    </div>
+
+    <h2>🔍 3. Module 1: Campus Search & Request Board (Member 1)</h2>
+    <div class="cue-box">
+      <span>📱 Demo Action:</span> Display Explore Page. Filter Moratuwa / Colombo, then tap the Request Board banner.
+    </div>
+
+    <div class="speech-box">
+      <p><em>"Starting with our discovery layer, engineered by <strong>Member 1</strong>. In the initial prototype, search was basic with placeholder 'North Campus' labels. Member 1 transformed this into a realistic Sri Lankan campus ecosystem:"</em></p>
+      <ul class="bullets">
+        <li><strong>University Localization:</strong> Mapped 17 Sri Lankan state universities, enabling students to filter items strictly available on their campus.</li>
+        <li><strong>LKR Price Range Filters:</strong> Implemented real-time Minimum and Maximum price sliders and inputs.</li>
+        <li><strong>Student Request Board (WTB):</strong> Developed <code>ItemRequestsModal.tsx</code> allowing students to post wanted requests with target budgets and urgency tags when items are not listed.</li>
+      </ul>
+    </div>
+
+    <h2>💬 4. Module 2: Live Chat & Price Bargaining (Member 2)</h2>
+    <div class="cue-box">
+      <span>📱 Demo Action:</span> Open a listing, tap '🤝 Make Offer'. Show discount chips. Navigate to Messages tab.
+    </div>
+
+    <div class="speech-box">
+      <p><em>"Once a buyer finds an item, communication and bargaining are the next essential steps, engineered by <strong>Member 2</strong>. In the initial project, Messages was an empty 20-line UI stub with zero database code:"</em></p>
+      <ul class="bullets">
+        <li><strong>Price Bargaining Engine:</strong> Built <code>MakeOfferModal.tsx</code> with discount presets (-5%, -10%, -15%, -20%), instant LKR savings calculation, and deal notes like 'Can pick up today at library'.</li>
+        <li><strong>Real-Time Firestore Chat:</strong> Built <code>MessagesPage.tsx</code> subscribing to Firestore conversations and chronological message subcollections with server timestamps and unread previews.</li>
+      </ul>
+    </div>
+
+    <h2>📦 5. Module 3: Seller CRUD & Safe Meetups (Member 3)</h2>
+    <div class="cue-box">
+      <span>📱 Demo Action:</span> Show 'Sell' form with photo picker. Show My Listings Edit/Delete. Tap '📍 Safe Meetup'.
+    </div>
+
+    <div class="speech-box">
+      <p><em>"Next, for inventory management and physical logistics, <strong>Member 3</strong> led development. In the base project, users could only create listings with hardcoded dummy photos, with no way to edit or delete items:"</em></p>
+      <ul class="bullets">
+        <li><strong>Listing CRUD & Cloud Storage:</strong> Connected <code>expo-image-picker</code> and Firebase Cloud Storage for authentic mobile gallery photo uploads, plus Edit listing forms and Delete with native alerts.</li>
+        <li><strong>Safe Campus Meetup Coordinator:</strong> Built <code>MeetupSchedulerModal.tsx</code> designating verified safe zones inside campuses (Library Lobby, Central Canteen, Security Gate) with date/time scheduling and safety guidelines.</li>
+      </ul>
+    </div>
+
+    <h2>⭐ 6. Module 4: Auth Security & Seller Reviews (Member 4)</h2>
+    <div class="cue-box">
+      <span>📱 Demo Action:</span> Show Profile Sign In / Sign Up toggle. Tap '⭐ Reviews' on a listing. Tap Back button.
+    </div>
+
+    <div class="speech-box">
+      <p><em>"To guarantee student trust and eliminate scammers, <strong>Member 4</strong> engineered our security and reputation layer. The initial base template supported only anonymous guest logins with zero seller accountability:"</em></p>
+      <ul class="bullets">
+        <li><strong>Email & Password Auth:</strong> Implemented full authentication with form validation, session persistence, and Firestore profile synchronization.</li>
+        <li><strong>Seller Reviews System:</strong> Created <code>SellerReviewsModal.tsx</code> featuring 5-star ratings, category satisfaction metrics, student trust badges (Verified Student, Fast Responder), and peer testimonials.</li>
+        <li><strong>Modal Touch Freeze Fix:</strong> Resolved a critical Android Expo Go bug where stacked native modals locked touch focus, architecting smooth single-modal view navigation with Back buttons.</li>
+      </ul>
+    </div>
+
+    <h2>🛡️ 7. Module 5: Data Models & Scam Shield (Member 5)</h2>
+    <div class="cue-box">
+      <span>📱 Demo Action:</span> Tap heart to toggle Saved item. Tap '🚨 Report suspicious listing' under details.
+    </div>
+
+    <div class="speech-box">
+      <p><em>"Finally, application stability, data integrity, and scam moderation were spearheaded by <strong>Member 5</strong>:"</em></p>
+      <ul class="bullets">
+        <li><strong>TypeScript Data Architecture:</strong> Architected <code>types.ts</code> declaring strict shared models for Listing, Conversation, Message, ItemRequest, Offer, MeetupPlan, SellerReview, and ListingReport.</li>
+        <li><strong>Shortlist Synchronization:</strong> Optimized real-time Firestore saved-items subcollection sync with instant optimistic UI.</li>
+        <li><strong>Content Moderation Shield:</strong> Built <code>ReportListingModal.tsx</code> allowing confidential reporting of fraudulent items, stolen property, and exam leaks for administrative review.</li>
+      </ul>
+    </div>
+
+    <h2>🏁 8. Architecture Highlights & Conclusion (~1 Min)</h2>
+    <div class="speech-box">
+      <p><em>"To summarize our technical architecture: each member's feature is modularly isolated under <code>src/features/</code> with zero git merge conflicts. All Firebase security rules protect user data. Our TypeScript codebase compiles cleanly with zero errors using <code>npx tsc --noEmit</code>."</em></p>
+      <p><em>"Our 5-member team successfully delivered a production-ready, secure campus marketplace for Sri Lankan university students. Thank you very much, and I am now ready for your questions!"</em></p>
+    </div>
+
+    <h2>💡 9. Panel Q&A Quick Answers Cheatsheet</h2>
+    
+    <div class="qa-card">
+      <div class="qa-q">Q on Member 1 (Campus Filtering): How does filtering execute?</div>
+      <div class="qa-a">"Uses in-memory & Firestore queries matching <code>listing.university</code> against the active campus state, falling back to 'All Campuses'."</div>
+    </div>
+
+    <div class="qa-card">
+      <div class="qa-q">Q on Member 2 (Chat): How are messages structured in Firestore?</div>
+      <div class="qa-a">"Root <code>conversations</code> collection with participant IDs in a <code>memberIds</code> array, and an inner <code>messages</code> subcollection ordered by <code>createdAt</code> server timestamps."</div>
+    </div>
+
+    <div class="qa-card">
+      <div class="qa-q">Q on Member 3 (Storage): Where are image files stored?</div>
+      <div class="qa-a">"Images are binary blobs uploaded to Firebase Cloud Storage under <code>listing-images/{uid}/{timestamp}</code>; only the public download URL string is stored in Firestore."</div>
+    </div>
+
+    <div class="qa-card">
+      <div class="qa-q">Q on Member 4 (Modal Fix): Why did the review button get stuck previously?</div>
+      <div class="qa-a">"Native Android Dialogs cannot stack without trapping focus. Solved via internal view routing in a single modal with smooth back navigation."</div>
+    </div>
+
+    <div class="qa-card">
+      <div class="qa-q">Q on Member 5 (TypeScript): How did TypeScript benefit the team?</div>
+      <div class="qa-a">"Declaring strict interfaces in <code>types.ts</code> ensured 5 developers worked concurrently on isolated files with zero runtime type mismatch errors."</div>
+    </div>
+
+  </div>
+
+</body>
+</html>

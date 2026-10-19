@@ -16,9 +16,9 @@ export type Conversation = {
   id: string;
   listingId: string;
   listingTitle: string;
-  sellerId?: string;
+  sellerId: string;
   sellerName: string;
-  memberIds?: string[];
+  memberIds: string[];
   updatedAt?: { seconds: number } | null;
 };
 
@@ -29,40 +29,11 @@ export type Message = {
   createdAt?: { seconds: number } | null;
 };
 
-export type Offer = {
-  id: string;
-  listingId: string;
-  listingTitle: string;
-  buyerName: string;
-  originalPrice: number;
-  offerPrice: number;
-  note?: string;
-  status: "pending" | "accepted" | "declined";
-  createdAt: string;
-};
+export type Tab = "Explore" | "Saved" | "Messages" | "Profile" | "MyListings";
 
-export type MeetupPlan = {
-  id: string;
-  listingId: string;
-  listingTitle: string;
-  sellerName: string;
-  campus: string;
-  location: string;
-  date: string;
-  timeSlot: string;
-  notes?: string;
-};
+// --- 5 Team Member Features Types ---
 
-export type SellerReview = {
-  id: string;
-  sellerId: string;
-  reviewerName: string;
-  rating: number;
-  comment: string;
-  date: string;
-  verifiedStudent?: boolean;
-};
-
+// Member 1 Feature: Item Requests (Campus Wanted / Wishlist)
 export type ItemRequest = {
   id: string;
   title: string;
@@ -75,6 +46,44 @@ export type ItemRequest = {
   createdAt: string;
 };
 
+// Member 2 Feature: Price Bargaining & Offers
+export type Offer = {
+  id: string;
+  listingId: string;
+  listingTitle: string;
+  buyerName: string;
+  originalPrice: number;
+  offerPrice: number;
+  note?: string;
+  status: "pending" | "accepted" | "declined";
+  createdAt: string;
+};
+
+// Member 3 Feature: Campus Safe Meetup Coordinator
+export type MeetupPlan = {
+  id: string;
+  listingId: string;
+  listingTitle: string;
+  sellerName: string;
+  campus: string;
+  location: string;
+  date: string;
+  timeSlot: string;
+  notes?: string;
+};
+
+// Member 4 Feature: Seller Reviews & Reputation
+export type SellerReview = {
+  id: string;
+  sellerId: string;
+  reviewerName: string;
+  rating: number;
+  comment: string;
+  date: string;
+  verifiedStudent?: boolean;
+};
+
+// Member 5 Feature: Listing Safety & Report Moderation
 export type ListingReport = {
   id: string;
   listingId: string;
@@ -82,7 +91,4 @@ export type ListingReport = {
   reason: string;
   details: string;
   reportedAt: string;
-  reporterId?: string;
 };
-
-export type Tab = "Explore" | "Saved" | "Messages" | "Profile" | "MyListings";

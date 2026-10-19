@@ -1,0 +1,403 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R 12 0 R] /Count 4 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Contents 7 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> >>
+endobj
+7 0 obj
+<< /Length 4453 >>
+stream
+0.75 0.82 0.78 RG 0.5 w
+45.0 806.89 m 550.28 806.89 l S
+BT /F1 8 Tf 0.35 0.45 0.40 rg
+45.0 811.89 Td (CAMPUS MARKETPLACE ? SOLO PRESENTATION SPEECH & VIVA GUIDE) Tj ET
+0.75 0.82 0.78 RG 0.5 w
+45.0 38 m 550.28 38 l S
+BT /F1 8 Tf 0.45 0.50 0.48 rg
+45.0 26 Td (React Native Expo SDK 57 + Firebase | 5-Member Team Division) Tj ET
+BT /F2 8 Tf 505.28 26 Td (Page 1) Tj ET
+0.12 0.36 0.30 rg
+45.0 743.89 505.28 54 re f
+BT /F2 18 Tf 1 1 1 rg
+59.0 771.89 Td (Campus Marketplace ? Presentation Speech) Tj ET
+BT /F1 10 Tf 0.85 0.93 0.88 rg
+59.0 753.89 Td (Delivered by Solo Presenter for 5-Member Team | Duration: 8-10 Mins) Tj ET
+0.12 0.36 0.30 rg
+45.0 714.89 505.28 1.5 re f
+BT /F2 13 Tf 0.09 0.23 0.20 rg
+45.0 718.89 Td (1. Team Roles & Equal Contribution \(20% Each\)) Tj ET
+0.88 0.93 0.90 rg
+45.0 684.89 505.28 16 re f
+BT /F2 8.5 Tf 0.10 0.30 0.22 rg 49.0 688.89 Td (MEMBER) Tj ET
+BT /F2 8.5 Tf 0.10 0.30 0.22 rg 139.0 688.89 Td (MODULE ASSIGNED) Tj ET
+BT /F2 8.5 Tf 0.10 0.30 0.22 rg 309.0 688.89 Td (DEDICATED SOURCE FILES) Tj ET
+0.85 0.88 0.85 RG 0.5 w
+45.0 667.89 m 550.28 667.89 l S
+BT /F1 8.5 Tf 0.15 0.20 0.18 rg 49.0 671.89 Td (Member 1) Tj ET
+BT /F1 8.5 Tf 0.15 0.20 0.18 rg 139.0 671.89 Td (Campus Discovery & Request Board) Tj ET
+BT /F1 8.5 Tf 0.15 0.20 0.18 rg 309.0 671.89 Td (ItemRequestsModal.tsx, ExplorePage.tsx, data.ts) Tj ET
+0.85 0.88 0.85 RG 0.5 w
+45.0 650.89 m 550.28 650.89 l S
+BT /F1 8.5 Tf 0.15 0.20 0.18 rg 49.0 654.89 Td (Member 2) Tj ET
+BT /F1 8.5 Tf 0.15 0.20 0.18 rg 139.0 654.89 Td (Live Chat & Price Bargaining) Tj ET
+BT /F1 8.5 Tf 0.15 0.20 0.18 rg 309.0 654.89 Td (MakeOfferModal.tsx, MessagesPage.tsx) Tj ET
+0.85 0.88 0.85 RG 0.5 w
+45.0 633.89 m 550.28 633.89 l S
+BT /F1 8.5 Tf 0.15 0.20 0.18 rg 49.0 637.89 Td (Member 3) Tj ET
+BT /F1 8.5 Tf 0.15 0.20 0.18 rg 139.0 637.89 Td (Listing CRUD & Safe Meetups) Tj ET
+BT /F1 8.5 Tf 0.15 0.20 0.18 rg 309.0 637.89 Td (MeetupSchedulerModal.tsx, MyListingsPage.tsx, ListingCard.tsx) Tj ET
+0.85 0.88 0.85 RG 0.5 w
+45.0 616.89 m 550.28 616.89 l S
+BT /F1 8.5 Tf 0.15 0.20 0.18 rg 49.0 620.89 Td (Member 4) Tj ET
+BT /F1 8.5 Tf 0.15 0.20 0.18 rg 139.0 620.89 Td (Auth Security & Seller Reviews) Tj ET
+BT /F1 8.5 Tf 0.15 0.20 0.18 rg 309.0 620.89 Td (SellerReviewsModal.tsx, ProfilePage.tsx) Tj ET
+0.85 0.88 0.85 RG 0.5 w
+45.0 599.89 m 550.28 599.89 l S
+BT /F1 8.5 Tf 0.15 0.20 0.18 rg 49.0 603.89 Td (Member 5) Tj ET
+BT /F1 8.5 Tf 0.15 0.20 0.18 rg 139.0 603.89 Td (Data Models & Content Moderation) Tj ET
+BT /F1 8.5 Tf 0.15 0.20 0.18 rg 309.0 603.89 Td (ReportListingModal.tsx, SavedPage.tsx, types.ts) Tj ET
+0.12 0.36 0.30 rg
+45.0 580.89 505.28 1.5 re f
+BT /F2 13 Tf 0.09 0.23 0.20 rg
+45.0 584.89 Td (2. Introduction & Problem Statement \(~1.5 Mins\)) Tj ET
+0.92 0.96 0.93 rg 0.70 0.82 0.74 RG 0.5 w
+45.0 548.89 505.28 18 re B
+BT /F3 9 Tf 0.10 0.40 0.30 rg
+53.0 552.89 Td ([Stage Cue: Welcome panel and state project title clearly]) Tj ET
+0.15 0.45 0.35 RG 3 w
+48.0 498.89 m 48.0 544.89 l S
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 540.89 Td (Good morning / afternoon respected lecturers and panel members. My name is [Your Name],) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 527.39 Td (and today I am proud to present our software engineering project, Campus Marketplace, on) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 513.89 Td (behalf of our 5-member team: [Member 1], [Member 2], [Member 3], [Member 4], and myself.) Tj ET
+0.15 0.45 0.35 RG 3 w
+48.0 438.39 m 48.0 498.39 l S
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 494.39 Td (Every semester, university students face heavy financial hurdles purchasing textbooks,) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 480.89 Td (notes, and lab gear. Existing platforms like Facebook Marketplace or Ikman lack) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 467.39 Td (university verification, fail to filter by campus, and carry safety risks during) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 453.89 Td (meetups.) Tj ET
+0.15 0.45 0.35 RG 3 w
+48.0 378.39 m 48.0 438.39 l S
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 434.39 Td (We engineered Campus Marketplace: a secure peer-to-peer trading app built with React) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 420.89 Td (Native Expo SDK 57, Firebase Cloud Firestore, and Cloud Storage. We expanded an initial) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 407.39 Td (prototype into an enterprise student marketplace, divided equally into 5 dedicated) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 393.89 Td (modules.) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Contents 9 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> >>
+endobj
+9 0 obj
+<< /Length 3496 >>
+stream
+0.75 0.82 0.78 RG 0.5 w
+45.0 806.89 m 550.28 806.89 l S
+BT /F1 8 Tf 0.35 0.45 0.40 rg
+45.0 811.89 Td (CAMPUS MARKETPLACE ? SOLO PRESENTATION SPEECH & VIVA GUIDE) Tj ET
+0.75 0.82 0.78 RG 0.5 w
+45.0 38 m 550.28 38 l S
+BT /F1 8 Tf 0.45 0.50 0.48 rg
+45.0 26 Td (React Native Expo SDK 57 + Firebase | 5-Member Team Division) Tj ET
+BT /F2 8 Tf 505.28 26 Td (Page 2) Tj ET
+0.12 0.36 0.30 rg
+45.0 787.89 505.28 1.5 re f
+BT /F2 13 Tf 0.09 0.23 0.20 rg
+45.0 791.89 Td (3. Module 1: Campus Search & Request Board \(Member 1\)) Tj ET
+0.92 0.96 0.93 rg 0.70 0.82 0.74 RG 0.5 w
+45.0 755.89 505.28 18 re B
+BT /F3 9 Tf 0.10 0.40 0.30 rg
+53.0 759.89 Td ([Action: Display Explore Page. Filter Moratuwa / Colombo, then tap Request Board banner]) Tj ET
+0.15 0.45 0.35 RG 3 w
+48.0 705.89 m 48.0 751.89 l S
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 747.89 Td (Starting with our discovery layer, engineered by Member 1. In the initial prototype,) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 734.39 Td (search was basic with placeholder 'North Campus' labels. Member 1 transformed this into) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 720.89 Td (a realistic Sri Lankan campus ecosystem:) Tj ET
+0.12 0.36 0.30 rg
+49.0 704.39 3 3 re f
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 701.39 Td (University Localization: Mapped 17 Sri Lankan state universities, enabling students to) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 688.39 Td (filter items strictly available on their campus.) Tj ET
+0.12 0.36 0.30 rg
+49.0 676.39 3 3 re f
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 673.39 Td (LKR Price Range Filters: Implemented real-time Minimum and Maximum price) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 660.39 Td (sliders/inputs.) Tj ET
+0.12 0.36 0.30 rg
+49.0 648.39 3 3 re f
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 645.39 Td (Student Request Board \(WTB\): Developed ItemRequestsModal.tsx allowing students to post) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 632.39 Td (wanted requests with target budgets and urgency tags when items are not listed.) Tj ET
+0.12 0.36 0.30 rg
+45.0 605.39 505.28 1.5 re f
+BT /F2 13 Tf 0.09 0.23 0.20 rg
+45.0 609.39 Td (4. Module 2: Live Chat & Price Bargaining \(Member 2\)) Tj ET
+0.92 0.96 0.93 rg 0.70 0.82 0.74 RG 0.5 w
+45.0 573.39 505.28 18 re B
+BT /F3 9 Tf 0.10 0.40 0.30 rg
+53.0 577.39 Td ([Action: Open a listing, tap 'Make Offer'. Show discount chips. Navigate to Messages tab]) Tj ET
+0.15 0.45 0.35 RG 3 w
+48.0 523.39 m 48.0 569.39 l S
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 565.39 Td (Once a buyer finds an item, communication and bargaining are the next essential steps,) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 551.89 Td (engineered by Member 2. In the initial project, Messages was an empty 20-line UI stub) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 538.39 Td (with zero database code.) Tj ET
+0.12 0.36 0.30 rg
+49.0 521.89 3 3 re f
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 518.89 Td (Price Bargaining Engine: Built MakeOfferModal.tsx with discount presets \(-5%, -10%,) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 505.89 Td (-15%, -20%\), instant LKR savings calculation, and deal notes like 'Can pick up today at) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 492.89 Td (library'.) Tj ET
+0.12 0.36 0.30 rg
+49.0 480.89 3 3 re f
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 477.89 Td (Real-Time Firestore Chat: Built MessagesPage.tsx subscribing to Firestore conversations) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 464.89 Td (and chronological message subcollections with server timestamps and unread previews.) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Contents 11 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> >>
+endobj
+11 0 obj
+<< /Length 3813 >>
+stream
+0.75 0.82 0.78 RG 0.5 w
+45.0 806.89 m 550.28 806.89 l S
+BT /F1 8 Tf 0.35 0.45 0.40 rg
+45.0 811.89 Td (CAMPUS MARKETPLACE ? SOLO PRESENTATION SPEECH & VIVA GUIDE) Tj ET
+0.75 0.82 0.78 RG 0.5 w
+45.0 38 m 550.28 38 l S
+BT /F1 8 Tf 0.45 0.50 0.48 rg
+45.0 26 Td (React Native Expo SDK 57 + Firebase | 5-Member Team Division) Tj ET
+BT /F2 8 Tf 505.28 26 Td (Page 3) Tj ET
+0.12 0.36 0.30 rg
+45.0 787.89 505.28 1.5 re f
+BT /F2 13 Tf 0.09 0.23 0.20 rg
+45.0 791.89 Td (5. Module 3: Seller CRUD & Safe Meetups \(Member 3\)) Tj ET
+0.92 0.96 0.93 rg 0.70 0.82 0.74 RG 0.5 w
+45.0 755.89 505.28 18 re B
+BT /F3 9 Tf 0.10 0.40 0.30 rg
+53.0 759.89 Td ([Action: Show 'Sell' form with photo picker. Show My Listings Edit/Delete. Tap 'Safe Meetup']) Tj ET
+0.15 0.45 0.35 RG 3 w
+48.0 705.89 m 48.0 751.89 l S
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 747.89 Td (Next, for inventory management and physical logistics, Member 3 led development. In the) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 734.39 Td (base project, users could only create listings with hardcoded dummy photos, with no way) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 720.89 Td (to edit or delete items.) Tj ET
+0.12 0.36 0.30 rg
+49.0 704.39 3 3 re f
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 701.39 Td (Listing CRUD & Cloud Storage: Connected expo-image-picker and Firebase Cloud Storage) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 688.39 Td (for authentic mobile gallery photo uploads, plus Edit listing forms and Delete with) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 675.39 Td (native alerts.) Tj ET
+0.12 0.36 0.30 rg
+49.0 663.39 3 3 re f
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 660.39 Td (Safe Campus Meetup Coordinator: Built MeetupSchedulerModal.tsx designating verified) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 647.39 Td (safe zones inside campuses \(Library Lobby, Central Canteen, Security Gate\) with) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 634.39 Td (date/time scheduling and safety guidelines.) Tj ET
+0.12 0.36 0.30 rg
+45.0 607.39 505.28 1.5 re f
+BT /F2 13 Tf 0.09 0.23 0.20 rg
+45.0 611.39 Td (6. Module 4: Auth Security & Seller Reviews \(Member 4\)) Tj ET
+0.92 0.96 0.93 rg 0.70 0.82 0.74 RG 0.5 w
+45.0 575.39 505.28 18 re B
+BT /F3 9 Tf 0.10 0.40 0.30 rg
+53.0 579.39 Td ([Action: Show Profile Sign In / Sign Up toggle. Tap 'Reviews' on a listing. Tap Back button]) Tj ET
+0.15 0.45 0.35 RG 3 w
+48.0 525.39 m 48.0 571.39 l S
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 567.39 Td (To guarantee student trust and eliminate scammers, Member 4 engineered our security and) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 553.89 Td (reputation layer. The initial base template supported only anonymous guest logins with) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 540.39 Td (zero seller accountability.) Tj ET
+0.12 0.36 0.30 rg
+49.0 523.89 3 3 re f
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 520.89 Td (Email & Password Auth: Implemented full authentication with form validation, session) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 507.89 Td (persistence, and Firestore profile synchronization.) Tj ET
+0.12 0.36 0.30 rg
+49.0 495.89 3 3 re f
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 492.89 Td (Seller Reviews System: Created SellerReviewsModal.tsx featuring 5-star ratings,) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 479.89 Td (category satisfaction metrics, student trust badges \(Verified Student, Fast Responder\),) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 466.89 Td (and peer testimonials.) Tj ET
+0.12 0.36 0.30 rg
+49.0 454.89 3 3 re f
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 451.89 Td (Modal Touch Freeze Fix: Resolved a critical Android Expo Go bug where stacked native) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 438.89 Td (modals locked touch focus, architecting smooth single-modal view navigation with Back) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 425.89 Td (buttons.) Tj ET
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Contents 13 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> >>
+endobj
+13 0 obj
+<< /Length 4508 >>
+stream
+0.75 0.82 0.78 RG 0.5 w
+45.0 806.89 m 550.28 806.89 l S
+BT /F1 8 Tf 0.35 0.45 0.40 rg
+45.0 811.89 Td (CAMPUS MARKETPLACE ? SOLO PRESENTATION SPEECH & VIVA GUIDE) Tj ET
+0.75 0.82 0.78 RG 0.5 w
+45.0 38 m 550.28 38 l S
+BT /F1 8 Tf 0.45 0.50 0.48 rg
+45.0 26 Td (React Native Expo SDK 57 + Firebase | 5-Member Team Division) Tj ET
+BT /F2 8 Tf 505.28 26 Td (Page 4) Tj ET
+0.12 0.36 0.30 rg
+45.0 787.89 505.28 1.5 re f
+BT /F2 13 Tf 0.09 0.23 0.20 rg
+45.0 791.89 Td (7. Module 5: Data Models & Scam Shield \(Member 5\)) Tj ET
+0.92 0.96 0.93 rg 0.70 0.82 0.74 RG 0.5 w
+45.0 755.89 505.28 18 re B
+BT /F3 9 Tf 0.10 0.40 0.30 rg
+53.0 759.89 Td ([Action: Tap heart to toggle Saved item. Tap 'Report suspicious listing' under details]) Tj ET
+0.15 0.45 0.35 RG 3 w
+48.0 719.89 m 48.0 751.89 l S
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 747.89 Td (Finally, application stability, data integrity, and scam moderation were spearheaded by) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 734.39 Td (Member 5:) Tj ET
+0.12 0.36 0.30 rg
+49.0 717.89 3 3 re f
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 714.89 Td (TypeScript Data Architecture: Architected types.ts declaring strict shared models for) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 701.89 Td (Listing, Conversation, Message, ItemRequest, Offer, MeetupPlan, SellerReview, and) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 688.89 Td (ListingReport.) Tj ET
+0.12 0.36 0.30 rg
+49.0 676.89 3 3 re f
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 673.89 Td (Shortlist Synchronization: Optimized real-time Firestore saved-items subcollection sync) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 660.89 Td (with instant optimistic UI.) Tj ET
+0.12 0.36 0.30 rg
+49.0 648.89 3 3 re f
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 645.89 Td (Content Moderation Shield: Built ReportListingModal.tsx allowing confidential reporting) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 632.89 Td (of fraudulent items, stolen property, and exam leaks for administrative review.) Tj ET
+0.12 0.36 0.30 rg
+45.0 607.89 505.28 1.5 re f
+BT /F2 13 Tf 0.09 0.23 0.20 rg
+45.0 611.89 Td (8. Architecture Highlights & Conclusion) Tj ET
+0.15 0.45 0.35 RG 3 w
+48.0 547.89 m 48.0 593.89 l S
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 589.89 Td (In summary: each member's feature is modularly isolated under src/features/ with zero) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 576.39 Td (merge conflicts. All Firebase security rules protect user data. Our TypeScript codebase) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 562.89 Td (compiles cleanly with zero errors \(npx tsc --noEmit\).) Tj ET
+0.15 0.45 0.35 RG 3 w
+48.0 501.39 m 48.0 547.39 l S
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 543.39 Td (Our 5-member team successfully delivered a production-ready, secure campus marketplace) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 529.89 Td (for Sri Lankan university students. Thank you very much, and I am now ready for your) Tj ET
+BT /F1 9.5 Tf 0.10 0.15 0.12 rg
+57.0 516.39 Td (questions!) Tj ET
+0.12 0.36 0.30 rg
+45.0 486.89 505.28 1.5 re f
+BT /F2 13 Tf 0.09 0.23 0.20 rg
+45.0 490.89 Td (9. Viva Panel Quick Answers Cheatsheet) Tj ET
+0.12 0.36 0.30 rg
+49.0 471.89 3 3 re f
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 468.89 Td (Q on Member 1 \(Search\): Uses in-memory & Firestore queries matching listing.university) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 455.89 Td (against the active campus state.) Tj ET
+0.12 0.36 0.30 rg
+49.0 443.89 3 3 re f
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 440.89 Td (Q on Member 2 \(Chat\): Root 'conversations' collection with memberIds array, nested) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 427.89 Td ('messages' subcollection ordered by server timestamp.) Tj ET
+0.12 0.36 0.30 rg
+49.0 415.89 3 3 re f
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 412.89 Td (Q on Member 3 \(Storage\): Images are binary blobs uploaded to Firebase Cloud Storage;) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 399.89 Td (only the download URL string is stored in Firestore.) Tj ET
+0.12 0.36 0.30 rg
+49.0 387.89 3 3 re f
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 384.89 Td (Q on Member 4 \(Modal Fix\): Native Android Dialogs cannot stack without trapping focus.) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 371.89 Td (Solved via internal view routing in a single modal.) Tj ET
+0.12 0.36 0.30 rg
+49.0 359.89 3 3 re f
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 356.89 Td (Q on Member 5 \(TypeScript\): Strict types in types.ts guaranteed 5 developers worked) Tj ET
+BT /F1 9.5 Tf 0.15 0.20 0.18 rg
+59.0 343.89 Td (concurrently with zero runtime data mismatch errors.) Tj ET
+endstream
+endobj
+xref
+0 14
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000135 00000 n 
+0000000205 00000 n 
+0000000280 00000 n 
+0000000358 00000 n 
+0000000510 00000 n 
+0000005015 00000 n 
+0000005167 00000 n 
+0000008715 00000 n 
+0000008869 00000 n 
+0000012735 00000 n 
+0000012889 00000 n 
+trailer
+<< /Size 14 /Root 1 0 R >>
+startxref
+17450
+%%EOF

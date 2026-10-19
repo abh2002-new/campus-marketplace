@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Marketplace — Project Presentation Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1F5D4C;
+      --primary-dark: #14322A;
+      --primary-light: #2c7a65;
+      --primary-subtle: #EBF3EE;
+      --accent: #E05A47;
+      --gold: #D97706;
+      --bg: #0F172A;
+      --slide-bg: #FFFFFF;
+      --text: #1E293B;
+      --text-muted: #64748B;
+      --border: #E2E8F0;
+      --card-bg: #F8FAFC;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      user-select: none;
+    }
+
+    /* Top Floating Toolbar */
+    .toolbar {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 8px 18px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      z-index: 100;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .toolbar-title {
+      color: #94A3B8;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .toolbar button {
+      background: #1F5D4C;
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .toolbar button:hover {
+      background: #2c7a65;
+      transform: translateY(-1px);
+    }
+
+    .toolbar .counter {
+      color: #F1F5F9;
+      font-weight: 700;
+      font-size: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      min-width: 55px;
+      text-align: center;
+    }
+
+    /* Slide Stage */
+    .stage {
+      width: 100%;
+      max-width: 1200px;
+      padding: 70px 20px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--slide-bg);
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      padding: 44px 56px;
+      position: relative;
+      flex-direction: column;
+      overflow: hidden;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.99); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Header styling */
+    .slide-badge {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--primary);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slide-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 24px;
+      line-height: 1.25;
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 12px;
+    }
+
+    /* Grids & Cards */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      flex: 1;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      flex: 1;
+    }
+
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 22px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card.highlight {
+      background: var(--primary-subtle);
+      border-color: #C2DEC9;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-desc {
+      font-size: 13.5px;
+      color: #334155;
+      line-height: 1.55;
+    }
+
+    .card-desc ul {
+      margin-left: 18px;
+      margin-top: 6px;
+    }
+
+    .card-desc li {
+      margin-bottom: 5px;
+    }
+
+    /* Member Placeholder Badges */
+    .member-slot {
+      background: white;
+      border: 2px dashed #94A3B8;
+      border-radius: 10px;
+      padding: 12px 14px;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .member-slot:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(31, 93, 76, 0.1);
+    }
+
+    .member-slot .num {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+
+    .member-slot .name-box {
+      font-weight: 700;
+      color: #0F172A;
+      font-size: 13px;
+      margin-bottom: 3px;
+      background: #FEF08A;
+      padding: 2px 6px;
+      border-radius: 4px;
+      cursor: text;
+    }
+
+    .member-slot .id-box {
+      font-size: 11.5px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #475569;
+      background: #F1F5F9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    .member-slot .role {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--primary);
+      line-height: 1.3;
+    }
+
+    /* Member Deep Dive Layout */
+    .deep-dive {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 24px;
+      flex: 1;
+    }
+
+    .lead-profile {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: 14px;
+      padding: 24px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .lead-badge {
+      background: rgba(255, 255, 255, 0.2);
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      align-self: flex-start;
+    }
+
+    .lead-name-box {
+      background: rgba(255, 255, 255, 0.95);
+      color: #14322A;
+      font-size: 18px;
+      font-weight: 800;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    .lead-id-box {
+      background: rgba(0, 0, 0, 0.3);
+      color: #E2E8F0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .lead-scope {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #E6F4EA;
+    }
+
+    .code-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-top: 6px;
+      display: inline-block;
+    }
+
+    .dive-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      overflow-y: auto;
+    }
+
+    .feature-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: 10px;
+      padding: 14px 18px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .feature-box h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feature-box p {
+      font-size: 13px;
+      color: #475569;
+      line-height: 1.5;
+    }
+
+    /* Comparison Table */
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .comp-table th {
+      background: var(--primary);
+      color: white;
+      text-align: left;
+      padding: 10px 14px;
+      font-weight: 700;
+    }
+
+    .comp-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .comp-table tr:nth-child(even) {
+      background: #F8FAFC;
+    }
+
+    .pill-bad {
+      background: #FEE2E2;
+      color: #991B1B;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      display: inline-block;
+    }
+
+    .pill-good {
+      background: #DCFCE7;
+      color: #166534;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      display: inline-block;
+    }
+
+    /* Title Slide Specifics */
+    .title-slide {
+      background: linear-gradient(135deg, #14322A 0%, #1F5D4C 100%);
+      color: white;
+      justify-content: space-between;
+    }
+
+    .title-slide .slide-title {
+      color: white;
+      border-bottom: none;
+      padding-bottom: 0;
+      font-size: 40px;
+    }
+
+    .title-banner {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      padding: 28px 32px;
+    }
+
+    .title-banner h1 {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .title-banner p {
+      font-size: 16px;
+      color: #E2E8F0;
+      margin-bottom: 12px;
+    }
+
+    .tech-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tech-tag {
+      background: rgba(255, 255, 255, 0.2);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.3px;
+    }
+
+    /* Slide Navigation Hint */
+    .nav-hint {
+      position: fixed;
+      bottom: 16px;
+      color: #64748B;
+      font-size: 12px;
+      display: flex;
+      gap: 16px;
+      z-index: 100;
+    }
+
+    .nav-hint kbd {
+      background: #1E293B;
+      border: 1px solid #334155;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #94A3B8;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+      .toolbar, .nav-hint {
+        display: none !important;
+      }
+      .stage {
+        padding: 0;
+        max-width: 100%;
+      }
+      .slide {
+        display: flex !important;
+        page-break-after: always;
+        break-after: page;
+        box-shadow: none;
+        border: 1px solid #DDD;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Presentation Toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-title">Campus Marketplace</div>
+    <button onclick="prevSlide()">◀ Previous</button>
+    <div class="counter" id="slideNum">1 / 12</div>
+    <button onclick="nextSlide()">Next ▶</button>
+    <button onclick="toggleFullScreen()" style="background:#334155;">⛶ Fullscreen</button>
+    <button onclick="window.print()" style="background:#E05A47;">🖨️ Print / PDF</button>
+  </div>
+
+  <div class="stage">
+
+    <!-- ================= SLIDE 1: Title Slide ================= -->
+    <div class="slide active title-slide" id="slide-1">
+      <div class="title-banner">
+        <div style="font-size:12px; font-weight:800; color:#A7F3D0; letter-spacing:1.5px; margin-bottom:6px;">
+          🎓 UNIVERSITY SOFTWARE ENGINEERING PROJECT PRESENTATION
+        </div>
+        <h1>Campus Marketplace</h1>
+        <p>A Hyper-Localized Peer-to-Peer Trading Platform for Sri Lankan University Students</p>
+        <div class="tech-tags">
+          <span class="tech-tag">⚛️ React Native (Expo SDK 57)</span>
+          <span class="tech-tag">🔥 Firebase Cloud Firestore</span>
+          <span class="tech-tag">☁️ Cloud Storage</span>
+          <span class="tech-tag">🛡️ TypeScript Strict Mode</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 18px;">
+        <div style="font-size: 13px; font-weight: 700; color: #E2E8F0; margin-bottom: 10px; display:flex; justify-content:space-between;">
+          <span>PROJECT TEAM MEMBERS (20% EQUAL SPLIT)</span>
+          <span style="font-size:11px; color:#A7F3D0;">✏️ Click boxes to type your student details</span>
+        </div>
+        <div class="grid-5">
+          <div class="member-slot">
+            <span class="num">MEMBER 1</span>
+            <div class="name-box" contenteditable="true" title="Click to edit">[STUDENT NAME 1]</div>
+            <div class="id-box" contenteditable="true" title="Click to edit">ID: SE/2022/XXXX</div>
+            <div class="role">Campus Discovery &amp; Requests</div>
+          </div>
+          <div class="member-slot">
+            <span class="num">MEMBER 2</span>
+            <div class="name-box" contenteditable="true" title="Click to edit">[STUDENT NAME 2]</div>
+            <div class="id-box" contenteditable="true" title="Click to edit">ID: SE/2022/XXXX</div>
+            <div class="role">Real-Time Chat &amp; Offers</div>
+          </div>
+          <div class="member-slot">
+            <span class="num">MEMBER 3</span>
+            <div class="name-box" contenteditable="true" title="Click to edit">[STUDENT NAME 3]</div>
+            <div class="id-box" contenteditable="true" title="Click to edit">ID: SE/2022/XXXX</div>
+            <div class="role">Inventory CRUD &amp; Safe Meetup</div>
+          </div>
+          <div class="member-slot">
+            <span class="num">MEMBER 4</span>
+            <div class="name-box" contenteditable="true" title="Click to edit">[STUDENT NAME 4]</div>
+            <div class="id-box" contenteditable="true" title="Click to edit">ID: SE/2022/XXXX</div>
+            <div class="role">Auth Security &amp; Seller Reviews</div>
+          </div>
+          <div class="member-slot">
+            <span class="num">MEMBER 5</span>
+            <div class="name-box" contenteditable="true" title="Click to edit">[STUDENT NAME 5]</div>
+            <div class="id-box" contenteditable="true" title="Click to edit">ID: SE/2022/XXXX</div>
+            <div class="role">Data Model &amp; Scam Shield</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 2: Team Workload Matrix ================= -->
+    <div class="slide" id="slide-2">
+      <div class="slide-badge">TEAM ARCHITECTURE &amp; CONTRIBUTION</div>
+      <h2 class="slide-title">Balanced Workload Matrix &amp; Ownership</h2>
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th style="width: 15%;">Member Details</th>
+            <th style="width: 28%;">Assigned Module &amp; Features</th>
+            <th style="width: 35%;">Key Source Files &amp; Implementation</th>
+            <th style="width: 10%;">Workload</th>
+            <th style="width: 12%;">Viva Focus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong contenteditable="true">[Member 1 Name]</strong><br>
+              <small contenteditable="true">ID: SE/XXXX</small>
+            </td>
+            <td><strong>Campus Discovery &amp; Requests</strong><br>Category tabs, search indexing, WTB community board</td>
+            <td><code>ExplorePage.tsx</code><br><code>ItemRequestsModal.tsx</code><br><code>data.ts</code></td>
+            <td><span class="pill-good">20% Split</span></td>
+            <td>Search latency &amp; UX filter design</td>
+          </tr>
+          <tr>
+            <td>
+              <strong contenteditable="true">[Member 2 Name]</strong><br>
+              <small contenteditable="true">ID: SE/XXXX</small>
+            </td>
+            <td><strong>Live Chat &amp; Price Bargaining</strong><br>Direct messaging channel, interactive counter-offer system</td>
+            <td><code>MessagesPage.tsx</code><br><code>MakeOfferModal.tsx</code></td>
+            <td><span class="pill-good">20% Split</span></td>
+            <td>State sync &amp; offer negotiation states</td>
+          </tr>
+          <tr>
+            <td>
+              <strong contenteditable="true">[Member 3 Name]</strong><br>
+              <small contenteditable="true">ID: SE/XXXX</small>
+            </td>
+            <td><strong>Inventory CRUD &amp; Safe Meetup</strong><br>Listing management, image upload, campus landmark scheduler</td>
+            <td><code>MyListingsPage.tsx</code><br><code>MeetupSchedulerModal.tsx</code><br><code>ListingCard.tsx</code></td>
+            <td><span class="pill-good">20% Split</span></td>
+            <td>Storage quotas &amp; transaction safety</td>
+          </tr>
+          <tr>
+            <td>
+              <strong contenteditable="true">[Member 4 Name]</strong><br>
+              <small contenteditable="true">ID: SE/XXXX</small>
+            </td>
+            <td><strong>Auth Security &amp; Seller Reviews</strong><br>Role sessions, user profile customization, 5-star ratings</td>
+            <td><code>ProfilePage.tsx</code><br><code>SellerReviewsModal.tsx</code></td>
+            <td><span class="pill-good">20% Split</span></td>
+            <td>Trust verification &amp; auth token lifecycle</td>
+          </tr>
+          <tr>
+            <td>
+              <strong contenteditable="true">[Member 5 Name]</strong><br>
+              <small contenteditable="true">ID: SE/XXXX</small>
+            </td>
+            <td><strong>Data Architecture &amp; Scam Shield</strong><br>TypeScript schema, saved shortlist, community report/flagging</td>
+            <td><code>types.ts</code><br><code>SavedPage.tsx</code><br><code>ReportListingModal.tsx</code></td>
+            <td><span class="pill-good">20% Split</span></td>
+            <td>Type safety contracts &amp; report moderation</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ================= SLIDE 3: Problem Statement ================= -->
+    <div class="slide" id="slide-3">
+      <div class="slide-badge">PROJECT CONTEXT &amp; MOTIVATION</div>
+      <h2 class="slide-title">The Problem in Sri Lankan Universities</h2>
+      <div class="grid-2">
+        <div class="card" style="border-left: 4px solid var(--accent);">
+          <div class="card-title">⚠️ Current Status Quo &amp; Chaos</div>
+          <div class="card-desc">
+            <ul>
+              <li><strong>Scattered Channels:</strong> Students rely on unorganized WhatsApp/Telegram groups and Facebook batches to buy/sell essentials.</li>
+              <li><strong>Lost in the Feed:</strong> Important academic equipment listings (calculators, drafters, lab coats, textbooks) vanish under 500+ daily chat messages.</li>
+              <li><strong>Trust &amp; Safety Risks:</strong> No reputation history, zero verified reviews, and risky off-campus meeting arrangements with unknown people.</li>
+              <li><strong>Severe Academic Waste:</strong> Graduating seniors throw away costly course material while freshers struggle to find affordable equipment.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card highlight" style="border-left: 4px solid var(--primary);">
+          <div class="card-title">🎯 Our Solution: Campus Marketplace</div>
+          <div class="card-desc">
+            <ul>
+              <li><strong>Hyper-Localized Discovery:</strong> Purpose-built for Sri Lankan universities with filtered faculties and trusted campus communities.</li>
+              <li><strong>Student-Friendly Price Discovery:</strong> Built-in structured offer negotiation so students can agree on fair second-hand prices.</li>
+              <li><strong>Campus Safe Zones:</strong> Designated physical handover spots (University Library, Main Canteen, Faculty Complex) for zero-risk handoffs.</li>
+              <li><strong>Scam Shield &amp; Accountability:</strong> Peer-reviewed seller reputation and one-tap scam reporting keeps the marketplace honest.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 4: Architecture & Tech Stack ================= -->
+    <div class="slide" id="slide-4">
+      <div class="slide-badge">SYSTEM DESIGN &amp; TECHNOLOGY</div>
+      <h2 class="slide-title">System Architecture &amp; Tech Stack</h2>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">📱 Frontend Client</div>
+          <div class="card-desc">
+            <p><strong>React Native with Expo SDK 57</strong></p>
+            <ul>
+              <li>Cross-platform for Android &amp; iOS devices.</li>
+              <li>Instant hot reloading with Expo Go testing.</li>
+              <li>Componentized UI design with Lucide icons.</li>
+              <li>Custom responsive navigation bar.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🔥 Cloud Backend</div>
+          <div class="card-desc">
+            <p><strong>Firebase &amp; Cloud Storage</strong></p>
+            <ul>
+              <li><strong>Firestore NoSQL:</strong> Real-time collections for listings, messages, offers, and requests.</li>
+              <li><strong>Cloud Storage:</strong> Fast image hosting for item photos with CDN caching.</li>
+              <li><strong>Auth Engine:</strong> Secure university student credentials and session tokens.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🛡️ Engineering Standards</div>
+          <div class="card-desc">
+            <p><strong>TypeScript Strict Architecture</strong></p>
+            <ul>
+              <li>Zero <code>any</code> leakage across all core entities.</li>
+              <li>Synchronous view switching to prevent native modal deadlocks.</li>
+              <li>Strict prop interfaces in <code>types.ts</code> ensuring contract integrity.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 5: Evolution & Bug Resolution ================= -->
+    <div class="slide" id="slide-5">
+      <div class="slide-badge">TECHNICAL HIGHLIGHT &amp; CHALLENGES SOLVED</div>
+      <h2 class="slide-title">From Base Template to Production-Ready App</h2>
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Area</th>
+            <th style="width: 35%;">Initial Template State</th>
+            <th style="width: 40%;">Final Engineering Upgrade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Android Modal Freeze (Critical)</strong></td>
+            <td><span class="pill-bad">Defect</span> Clicking review/offer opened nested <code>&lt;Modal&gt;</code> inside another modal, locking Android touch dispatch completely.</td>
+            <td><span class="pill-good">Engineered Solution</span> Replaced stacked native dialogs with single-parent view routing (<code>activeView</code> state) + instant <code>← Back</code> breadcrumbs.</td>
+          </tr>
+          <tr>
+            <td><strong>Bargaining &amp; Offers</strong></td>
+            <td><span class="pill-bad">Missing</span> Only passive chat messaging without price settlement.</td>
+            <td><span class="pill-good">Engineered Solution</span> <code>MakeOfferModal</code> with quick percentage pills (-10%, -15%, -20%) and live offer statuses.</td>
+          </tr>
+          <tr>
+            <td><strong>Physical Meetup Safety</strong></td>
+            <td><span class="pill-bad">Missing</span> No designated coordination for in-person item exchanges.</td>
+            <td><span class="pill-good">Engineered Solution</span> <code>MeetupSchedulerModal</code> with campus safe-zone presets and safety advisories.</td>
+          </tr>
+          <tr>
+            <td><strong>Community Trust &amp; Quality</strong></td>
+            <td><span class="pill-bad">Vulnerable</span> No reputation check, open to unmoderated fraudulent posts.</td>
+            <td><span class="pill-good">Engineered Solution</span> 5-star seller ratings + <code>ReportListingModal</code> scam shield with instant categorization.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ================= SLIDE 6: Member 1 ================= -->
+    <div class="slide" id="slide-6">
+      <div class="slide-badge">TEAM MEMBER 1 DEEP DIVE</div>
+      <h2 class="slide-title">Campus Discovery &amp; Item Request Board (WTB)</h2>
+      <div class="deep-dive">
+        <div class="lead-profile">
+          <div>
+            <div class="lead-badge">LEAD DEVELOPER</div>
+            <div class="lead-name-box" contenteditable="true">[MEMBER 1 FULL NAME]</div>
+            <div class="lead-id-box" contenteditable="true">STUDENT ID: SE/2022/XXXX</div>
+            <div class="lead-scope">
+              Owned the product search, high-performance category filtering, sample dataset architecture, and the community "Want-To-Buy" broadcast system.
+            </div>
+          </div>
+          <div>
+            <div class="code-badge">ExplorePage.tsx</div>
+            <div class="code-badge">ItemRequestsModal.tsx</div>
+            <div class="code-badge">data.ts</div>
+          </div>
+        </div>
+        <div class="dive-content">
+          <div class="feature-box">
+            <h4>🔍 Instant Search &amp; Category Indexing</h4>
+            <p>Engineered multi-attribute instant filtering by title, department, condition, and price range. Handles hundreds of listings without frame drops on budget student smartphones.</p>
+          </div>
+          <div class="feature-box">
+            <h4>📢 Reverse Marketplace: Item Request Board (WTB)</h4>
+            <p>Allows students who cannot find what they need to broadcast a request (e.g., <em>"Need Casio fx-991EX for tomorrow's exam"</em>). Sellers can respond immediately with offers.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🎓 Sri Lankan Academic Datasets</h4>
+            <p>Seeded realistic localized items: Faculty of Engineering drafters, Faculty of Medicine dissection kits, and university hostel utilities with realistic LKR pricing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 7: Member 2 ================= -->
+    <div class="slide" id="slide-7">
+      <div class="slide-badge">TEAM MEMBER 2 DEEP DIVE</div>
+      <h2 class="slide-title">Real-Time Messaging &amp; Price Bargaining Engine</h2>
+      <div class="deep-dive">
+        <div class="lead-profile">
+          <div>
+            <div class="lead-badge">LEAD DEVELOPER</div>
+            <div class="lead-name-box" contenteditable="true">[MEMBER 2 FULL NAME]</div>
+            <div class="lead-id-box" contenteditable="true">STUDENT ID: SE/2022/XXXX</div>
+            <div class="lead-scope">
+              Spearheaded buyer-seller real-time communications, conversation history caching, and the structured price negotiation algorithm.
+            </div>
+          </div>
+          <div>
+            <div class="code-badge">MessagesPage.tsx</div>
+            <div class="code-badge">MakeOfferModal.tsx</div>
+          </div>
+        </div>
+        <div class="dive-content">
+          <div class="feature-box">
+            <h4>💬 In-App Direct Chat Channel</h4>
+            <p>Eliminates the risk of sharing personal phone numbers on external apps. Chat threads are linked directly to the listing entity for seamless contextual conversations.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🤝 Structured Counter-Offer System</h4>
+            <p>Created interactive quick-discount percentage shortcuts (-10%, -15%, -20%) and custom offer inputs. Sellers can Accept, Decline, or Counter with a single tap.</p>
+          </div>
+          <div class="feature-box">
+            <h4>⚡ State Synchronization</h4>
+            <p>Ensures offer statuses (<code>pending</code>, <code>accepted</code>, <code>declined</code>) update reliably across both buyer and seller screens in real time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 8: Member 3 ================= -->
+    <div class="slide" id="slide-8">
+      <div class="slide-badge">TEAM MEMBER 3 DEEP DIVE</div>
+      <h2 class="slide-title">Seller Inventory CRUD &amp; Safe Meetup Coordinator</h2>
+      <div class="deep-dive">
+        <div class="lead-profile">
+          <div>
+            <div class="lead-badge">LEAD DEVELOPER</div>
+            <div class="lead-name-box" contenteditable="true">[MEMBER 3 FULL NAME]</div>
+            <div class="lead-id-box" contenteditable="true">STUDENT ID: SE/2022/XXXX</div>
+            <div class="lead-scope">
+              Engineered the seller dashboard lifecycle (Create, Read, Update, Mark Sold), image upload pipelines, and the physical campus handover coordinator.
+            </div>
+          </div>
+          <div>
+            <div class="code-badge">MyListingsPage.tsx</div>
+            <div class="code-badge">MeetupSchedulerModal.tsx</div>
+            <div class="code-badge">ListingCard.tsx</div>
+          </div>
+        </div>
+        <div class="dive-content">
+          <div class="feature-box">
+            <h4>📦 Complete Inventory Management</h4>
+            <p>Allows student sellers to post items in under 60 seconds, update prices dynamically, mark items as "Reserved" or "Sold", and track active listing views.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🏫 Campus Safe Meetup Coordinator</h4>
+            <p>Solves physical exchange risks by offering curated public landmarks: University Main Library, Canteen Complex, and Faculty Security Gate.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🛡️ In-Person Safety Protocols</h4>
+            <p>Displays clear safety checklists (inspect item before cash transfer, meet during daylight hours, verify student ID).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 9: Member 4 ================= -->
+    <div class="slide" id="slide-9">
+      <div class="slide-badge">TEAM MEMBER 4 DEEP DIVE</div>
+      <h2 class="slide-title">Authentication Security, Profile &amp; Seller Reviews</h2>
+      <div class="deep-dive">
+        <div class="lead-profile">
+          <div>
+            <div class="lead-badge">LEAD DEVELOPER</div>
+            <div class="lead-name-box" contenteditable="true">[MEMBER 4 FULL NAME]</div>
+            <div class="lead-id-box" contenteditable="true">STUDENT ID: SE/2022/XXXX</div>
+            <div class="lead-scope">
+              Architected the student identity verification, user profile customization, and the 5-star peer review trust score system.
+            </div>
+          </div>
+          <div>
+            <div class="code-badge">ProfilePage.tsx</div>
+            <div class="code-badge">SellerReviewsModal.tsx</div>
+          </div>
+        </div>
+        <div class="dive-content">
+          <div class="feature-box">
+            <h4>🔐 Student Authentication &amp; Sessions</h4>
+            <p>Implemented protected user profile sessions with avatar customization, faculty selection, and verified student status badges.</p>
+          </div>
+          <div class="feature-box">
+            <h4>⭐ 5-Star Seller Reputation Engine</h4>
+            <p>Allows buyers to submit verified reviews, written feedback, and rating breakdowns. Builds a community-driven reputation history for every seller.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🐞 Critical Touch Deadlock Resolution</h4>
+            <p>Instrumental in diagnosing and re-architecting the Android Modal touch freeze by converting reviews into an in-modal routed subview with clean navigation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 10: Member 5 ================= -->
+    <div class="slide" id="slide-10">
+      <div class="slide-badge">TEAM MEMBER 5 DEEP DIVE</div>
+      <h2 class="slide-title">TypeScript Architecture, Shortlist &amp; Scam Shield</h2>
+      <div class="deep-dive">
+        <div class="lead-profile">
+          <div>
+            <div class="lead-badge">LEAD DEVELOPER</div>
+            <div class="lead-name-box" contenteditable="true">[MEMBER 5 FULL NAME]</div>
+            <div class="lead-id-box" contenteditable="true">STUDENT ID: SE/2022/XXXX</div>
+            <div class="lead-scope">
+              Defined the core TypeScript domain types, saved bookmarks persistence, and designed the fraud prevention and community reporting mechanism.
+            </div>
+          </div>
+          <div>
+            <div class="code-badge">types.ts</div>
+            <div class="code-badge">SavedPage.tsx</div>
+            <div class="code-badge">ReportListingModal.tsx</div>
+          </div>
+        </div>
+        <div class="dive-content">
+          <div class="feature-box">
+            <h4>📐 Strict TypeScript Schema</h4>
+            <p>Designed contracts for <code>Listing</code>, <code>Offer</code>, <code>Review</code>, <code>MeetupSlot</code>, and <code>ItemRequest</code>. Clean compile-time safety with 0 TypeScript errors.</p>
+          </div>
+          <div class="feature-box">
+            <h4>❤️ Saved Shortlist &amp; Watchlist</h4>
+            <p>Allows students to bookmark interested items and track price drops or availability changes before committing to an offer.</p>
+          </div>
+          <div class="feature-box">
+            <h4>🚨 Scam Shield &amp; Moderation Flagging</h4>
+            <p>Empowers the student community to flag suspicious listings (fake items, harassment, inaccurate pricing) with categorized audit logs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 11: Live Demonstration ================= -->
+    <div class="slide" id="slide-11">
+      <div class="slide-badge">PRACTICAL APPLICATION</div>
+      <h2 class="slide-title">Live App Walkthrough &amp; Demonstration Flow</h2>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">1️⃣ Discovery &amp; Search</div>
+          <div class="card-desc">
+            Explore active listings, switch category tabs, apply budget price filters, and inspect the "Want-to-Buy" request board.
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">2️⃣ Item Deep Dive</div>
+          <div class="card-desc">
+            Open listing details modal, view photo gallery, inspect condition tags, seller trust score, and verified peer reviews.
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">3️⃣ Bargain &amp; Counter-Offer</div>
+          <div class="card-desc">
+            Tap "Make Offer", select a 10% discount shortcut, submit the proposal, and view live status synchronization.
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">4️⃣ Campus Safe Meetup</div>
+          <div class="card-desc">
+            Open the Meetup Coordinator, select "Main Library Entrance", choose an exchange time, and review the safety checklist.
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">5️⃣ Seller Inventory Flow</div>
+          <div class="card-desc">
+            Switch to seller tab, view listed items, update pricing dynamically, and demonstrate marking items as "Sold".
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">6️⃣ Moderation &amp; Scam Shield</div>
+          <div class="card-desc">
+            Demonstrate the community protection system by filing a sample item report with reason categorization.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 12: Viva Q&A & Future Roadmap ================= -->
+    <div class="slide" id="slide-12">
+      <div class="slide-badge">EVALUATION &amp; ROADMAP</div>
+      <h2 class="slide-title">Viva Q&amp;A Defense &amp; Future Enhancements</h2>
+      <div class="grid-2">
+        <div class="card highlight">
+          <div class="card-title">🎓 Anticipated Examiner Viva Questions</div>
+          <div class="card-desc">
+            <ul>
+              <li><strong>Why choose Expo &amp; React Native over native Android?</strong><br>Ensures rapid cross-platform deployment on both Android and iOS from a single TypeScript codebase.</li>
+              <li><strong>How did you resolve the Android touch freeze?</strong><br>Eliminated nested native modal stacking that caused Android Dialog window deadlocks; replaced with internal view state routing.</li>
+              <li><strong>How does this scale across multiple universities?</strong><br>Multi-tenant Firestore schema partitioned by University ID (e.g., UoM, UoC, UoP).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🚀 Future Project Roadmap</div>
+          <div class="card-desc">
+            <ul>
+              <li><strong>Institutional SSO:</strong> Integration with official university email domains (<code>.ac.lk</code>) for 100% verified student identity.</li>
+              <li><strong>LankaQR Escrow Payments:</strong> In-app digital escrow holding funds securely until both parties verify physical item receipt.</li>
+              <li><strong>Push Notifications:</strong> Real-time device alerts for incoming buyer offers, chat messages, and price drop notifications.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="nav-hint">
+    <span>Use <kbd>←</kbd> <kbd>→</kbd> or <kbd>Space</kbd> to navigate</span>
+    <span>•</span>
+    <span>Click any member box on Slide 1 or 2 to edit names directly</span>
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 12;
+
+    function showSlide(n) {
+      if (n < 1) n = 1;
+      if (n > totalSlides) n = totalSlides;
+      currentSlide = n;
+
+      for (let i = 1; i <= totalSlides; i++) {
+        const slide = document.getElementById(`slide-${i}`);
+        if (slide) {
+          slide.classList.remove('active');
+        }
+      }
+
+      const activeSlide = document.getElementById(`slide-${currentSlide}`);
+      if (activeSlide) {
+        activeSlide.classList.add('active');
+      }
+
+      document.getElementById('slideNum').textContent = `${currentSlide} / ${totalSlides}`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        showSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        showSlide(currentSlide - 1);
+      }
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          alert(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      // Don't navigate if user is typing in contenteditable
+      if (e.target.isContentEditable) return;
+
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        showSlide(1);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        showSlide(totalSlides);
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullScreen();
+      }
+    });
+  </script>
+</body>
+</html>
